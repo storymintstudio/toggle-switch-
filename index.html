@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Dark / Light Toggle</title>
+
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      transition: 0.4s;
+      font-family: Arial, sans-serif;
+      background: #111;
+      color: white;
+    }
+
+    /* Light Mode */
+    body.light-mode {
+      background: white;
+      color: black;
+    }
+
+    .container {
+      text-align: center;
+    }
+
+    .switch {
+      position: relative;
+      display: inline-block;
+      width: 70px;
+      height: 38px;
+    }
+
+    .switch input {
+      display: none;
+    }
+
+    .slider {
+      position: absolute;
+      cursor: pointer;
+      inset: 0;
+      background-color: #555;
+      transition: 0.4s;
+      border-radius: 34px;
+    }
+
+    .slider:before {
+      content: "";
+      position: absolute;
+      height: 30px;
+      width: 30px;
+      left: 4px;
+      bottom: 4px;
+      background: white;
+      transition: 0.4s;
+      border-radius: 50%;
+    }
+
+    input:checked + .slider {
+      background: #4CAF50;
+    }
+
+    input:checked + .slider:before {
+      transform: translateX(32px);
+    }
+
+    #status {
+      margin-top: 15px;
+      font-size: 24px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="container">
+
+    <label class="switch">
+      <input type="checkbox" id="toggleBtn">
+      <span class="slider"></span>
+    </label>
+
+    <div id="status">LIGHT MODE </div>
+
+  </div>
+
+  <script>
+    const toggleBtn = document.getElementById("toggleBtn");
+    const body = document.body;
+    const status = document.getElementById("status");
+
+    toggleBtn.addEventListener("change", () => {
+
+      if (toggleBtn.checked) {
+        body.classList.add("light-mode");
+        status.innerText = "LIGHT MODE";
+      } else {
+        body.classList.remove("light-mode");
+        status.innerText = "DARK MODE";
+      }
+
+    });
+  </script>
+
+</body>
+</html>
